@@ -1,0 +1,44 @@
+.: SpriteJam Framework (0.0.1) :.
+LICENSE: MIT
+
+The framework is a collection of tools and little libraries to help with games development using the Gosu games library in Ruby. 
+
+Current Features:
+
+TileMap Engine
+  - Map loader
+  - Collision Detection
+  - Custom Map Format
+  - Customisable viewport
+  
+Features in Development:
+  - TileMap Editor
+
+===========================
+
+.: TileMap Engine (0.1RC1) :.
+
+The map file format is a plain text document containing a couple of tags related to the map.
+
+  _____________
+ |[info]       | -> Info about the map
+ |32           | -> Tile Size
+ |tile_set.png | -> TileSet Image
+ |_____________|
+ 
+  _____________
+ |[tiles]      | -> Tile codes
+ |#,Grass,0    | -> Ascii Symbol, Label, Solid?
+ |_____________|
+ 
+  _____________
+ |[map]        | -> The map in ascii form
+ |##########   | -> The ascii map layout
+ |##000000##   |
+ |##000000##   |
+ |##########   |
+ |_____________|
+ 
+
+Developed By: Richard Patching
+More Info: http://www.jamjargames.com
