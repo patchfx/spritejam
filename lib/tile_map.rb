@@ -37,7 +37,7 @@ module SpriteJam
       end
       
       if direction == 'left'
-        return @tile_set.tile_codes[offset_y][offset_x - 1].solid?
+        return @tile_set.tile_codes[offset_y][offset_x].solid?
       end
       
       if direction == 'up'
