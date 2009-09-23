@@ -28,24 +28,21 @@ module SpriteJam
       @map.boundary_for({:coord => :x, :viewport => @viewport_x})
     end
     
-    def solid_tile?(direction, x, y, screen_x, screen_y)
-      offset_y = collision_offset(y, screen_y)
+    def solid_tile?(direction, x, y, screen_x, screen_y)      
+      size = 1 # remove magic number (char size)
       offset_x = collision_offset(x, screen_x)
-      
-      if direction == 'right'
-        return @tile_set.tile_codes[offset_y][offset_x + 1].solid?
+      offset_y = collision_offset(y, screen_y)
+      if @tile_set.tile_codes[offset_y - size][offset_x - size].solid?
+        return true
       end
-      
-      if direction == 'left'
-        return @tile_set.tile_codes[offset_y][offset_x].solid?
+      if @tile_set.tile_codes[offset_y - size][offset_x + size].solid?
+        return true
       end
-      
-      if direction == 'up'
-        return @tile_set.tile_codes[offset_y][offset_x].solid?
+      if @tile_set.tile_codes[offset_y + size][offset_x - size].solid?
+        return true
       end
-      
-      if direction == 'down'
-        return @tile_set.tile_codes[offset_y + 1][offset_x].solid?
+      if @tile_set.tile_codes[offset_y + size][offset_x + size].solid?
+        return true
       end
       false
     end
