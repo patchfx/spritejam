@@ -1,7 +1,6 @@
-.: SpriteJam Framework (0.0.1) :.
-LICENSE: MIT
+.: SpriteJam Framework (0.0.9) :.
 
-The framework is a collection of tools and little libraries to help with games development using the Gosu games library in Ruby. 
+The framework is a collection of tools and little libraries to help with games development using the Gosu lib in Ruby. 
 
 Current Features:
 
@@ -17,6 +16,8 @@ Features in Development:
 ===========================
 
 .: TileMap Engine (0.1RC1) :.
+
+See the 'Example' directory for examples of how to use the map engine.
 
 The map file format is a plain text document containing a couple of tags related to the map.
 
