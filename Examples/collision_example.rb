@@ -23,7 +23,7 @@ end
 class CollisionExampleWindow < Gosu::Window
   def initialize
     super(800, 600, false)
-    self.caption = "SpriteJam::TileMap - Collision Example"
+    self.caption = "SpriteJam - Collision Example"
     @map = SpriteJam::TileMap.new(self, 'map1.map', 800, 600)
     @player = Player.new(self, 20, 20)
   end
