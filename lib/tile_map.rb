@@ -28,20 +28,49 @@ module SpriteJam
       @map.boundary_for({:coord => :x, :viewport => @viewport_x})
     end
     
-    def solid_tile?(direction, x, y, screen_x, screen_y)      
-      size = 1 # remove magic number (char size)
+    def solid_tile?(direction, x, y, screen_x, screen_y)    
+      size = 1
       offset_x = collision_offset(x, screen_x)
       offset_y = collision_offset(y, screen_y)
-      if @tile_set.tile_codes[offset_y - size][offset_x - size].solid?
+      return collision_right(offset_y, offset_x, size) if direction == 'right'
+      return collision_left(offset_y, offset_x, size) if direction == 'left'
+      return collision_up(offset_y, offset_x, size) if direction == 'up'
+      return collision_down(offset_y, offset_x, size) if direction == 'down'
+      
+      false
+    end
+    
+    def collision_right(y, x, size)
+      if @tile_set.tile_codes[y + size][x + size].solid?
+        return true
+      elsif @tile_set.tile_codes[y][x + size].solid?
         return true
       end
-      if @tile_set.tile_codes[offset_y - size][offset_x + size].solid?
+      false
+    end
+    
+    def collision_left(y, x, size)
+      if @tile_set.tile_codes[y + size][x].solid?
+        return true
+      elsif @tile_set.tile_codes[y][x].solid?
         return true
       end
-      if @tile_set.tile_codes[offset_y + size][offset_x - size].solid?
+      false
+    end
+    
+    def collision_up(y, x, size)
+      if @tile_set.tile_codes[y][x + size].solid? 
+        return true
+      elsif @tile_set.tile_codes[y][x].solid?
         return true
       end
-      if @tile_set.tile_codes[offset_y + size][offset_x + size].solid?
+      false
+    end
+    
+    def collision_down(y, x, size)
+      if @tile_set.tile_codes[y + size][x + size].solid? 
+        return true
+      elsif @tile_set.tile_codes[y + size][x].solid?
         return true
       end
       false
