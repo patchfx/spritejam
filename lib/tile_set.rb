@@ -1,13 +1,11 @@
 module SpriteJam
   
   class Tile
-    attr_accessor :code, :index, :solid, :x, :y
-    def initialize(code, index, solid, x, y)
+    attr_accessor :code, :index, :solid
+    def initialize(code, index, solid)
       @code = code
       @index = index
       @solid = solid
-      @x = x
-      @y = y
     end
     
     def solid?
@@ -31,7 +29,7 @@ module SpriteJam
             code = @map.ascii_tiles[y][x, 1]
             index = tile_code_for(code)
             solid = solid_tile?(code)
-            Tile.new(code, index, solid, (x * @map.tile_size), (y * @map.tile_size))
+            Tile.new(code, index, solid)
           end
         end
       end
@@ -39,14 +37,15 @@ module SpriteJam
     end
     
     def tile_code_for(index)
-      @map.tile_codes.each_with_index do |code, i|
-        code = code.split(',')
-        if index == code[0]
-          return i
-        else
-          return nil
+      index_code = nil
+      tile_codes = @map.tile_codes
+      tile_codes.each_with_index do |code, i|
+        tile_code = code.split(',')
+        if index == tile_code[0]
+          index_code = i
         end
       end
+      index_code
     end
     
     def solid_tile?(index)
