@@ -20,6 +20,10 @@ module SpriteJam
       @tile_set = SpriteJam::TileSet.new(@window, @map)
     end
     
+    def width
+      @map.width * @map.tile_size
+    end
+    
     def boundary_y
       @map.boundary_for({:coord => :y, :viewport => @viewport_y})
     end
