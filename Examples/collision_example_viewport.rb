@@ -12,7 +12,7 @@ class Player
   def initialize(window, x, y)
     @x = x
     @y = y
-    @image = Gosu::Image.new(window, 'tile_1.png', false)
+    @image = Gosu::Image.new(window, 'player_32.png', false)
   end
   
   def draw
@@ -24,8 +24,9 @@ class CollisionExampleWindow < Gosu::Window
   def initialize
     super(800, 600, false)
     self.caption = "SpriteJam - Collision Example Viewport"
-    @map = SpriteJam::TileMap.new(self, 'map2.map', 800, 450)
+    @map = SpriteJam::TileMap.new(self, 'map2.map', 800, 600)
     @player = Player.new(self, 20, 20)
+    @hud = Gosu::Image.new(self, 'hud_1.png', false)
   end
   
   def update
@@ -49,6 +50,7 @@ class CollisionExampleWindow < Gosu::Window
   def draw
     @map.draw(0, 0)
     @player.draw
+    @hud.draw(0,500,0)
   end
   
 end

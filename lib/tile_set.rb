@@ -49,18 +49,14 @@ module SpriteJam
     end
     
     def solid_tile?(index)
+      solid = false
       @map.tile_codes.each do |code|
         code = code.split(',')
         if index == code[0] && code[2] == '1'
-          return true
-        else
-          return false
+          solid = true
         end    
       end
-    end
-    
-    def tile_from_geom(x, y)
-      raise @tile_codes.inspect
+      solid
     end
   end
   
