@@ -34,16 +34,21 @@ class CollisionExampleWindow < Gosu::Window
   
   def update
     if button_down? Gosu::Button::KbRight
-      if !@map.solid_tile?('right', @player.x, @player.y, @scroll_x, 0)
+      unless @map.solid_tile?('right', @player.x, @player.y)
         @player.x += 3
         if @player.x >= 400
-           @scroll_x += 1 unless (((@scroll_x * 32) + width) >= @map.width)
+           @map.scroll_x('right')
         end
       end
     end
     
-    if button_down? Gosu::Button::KbLeft
-      @player.x -= 3 unless @map.solid_tile?('left', @player.x, @player.y, 0, 0)
+    if button_down? Gosu::Button::KbLeft 
+      unless @map.solid_tile?('left', @player.x, @player.y)
+        @player.x -= 3
+        if @player.x >= 400
+          @map.scroll_x('left')
+        end
+      end
     end
     
     if button_down? Gosu::Button::KbUp
@@ -59,7 +64,7 @@ class CollisionExampleWindow < Gosu::Window
     @coord_text.draw("#{@player.x + (@scroll_x*32)}", 70, 525, 1, 1.0, 1.0, 0xffffffff)
     @coord_text.draw("#{@player.y}", 210, 525, 1, 1.0, 1.0, 0xffffffff)
     @coord_text.draw("#{@scroll_x}", 500, 525, 1, 1.0, 1.0, 0xffffffff)
-    @map.draw(@scroll_x, 0)
+    @map.draw
     @player.draw
     @hud.draw(0,500,0)
   end
