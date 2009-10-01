@@ -50,6 +50,13 @@ module SpriteJam
       end
     end
     
+    def scroll_y(direction)
+      unless (((@world_y * @map.tile_size) + @window.width) >= (@map.height * @map.tile_size))
+        @world_y += 1 if direction == 'down'
+        @world_y -= 1 if direction == 'up'
+      end
+    end
+    
     def collision_right(y, x, size)
       if @tile_set.tile_codes[y + size][x + size].solid?
         return true
