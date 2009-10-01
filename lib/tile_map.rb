@@ -11,6 +11,7 @@ require File.dirname(__FILE__) + '/tile_set'
 module SpriteJam
   
   class TileMap
+    attr_reader :world_x, :world_y
     # Can seperate the actual map stuff into a map class
     def initialize(window, map_file, viewport_x, viewport_y)
       @viewport_x = viewport_x
