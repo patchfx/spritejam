@@ -52,18 +52,18 @@ class CollisionExampleWindow < Gosu::Window
     end
     
     if button_down? Gosu::Button::KbUp
-      @player.y -= 3 unless @map.solid_tile?('up', @player.x, @player.y, 0, 0)
+      @player.y -= 3 unless @map.solid_tile?('up', @player.x, @player.y)
     end
     
     if button_down? Gosu::Button::KbDown
-      @player.y += 3 unless @map.solid_tile?('down', @player.x, @player.y, 0, 0)
+      @player.y += 3 unless @map.solid_tile?('down', @player.x, @player.y)
     end
   end
   
   def draw
     @coord_text.draw("#{@player.x + (@scroll_x*32)}", 70, 525, 1, 1.0, 1.0, 0xffffffff)
     @coord_text.draw("#{@player.y}", 210, 525, 1, 1.0, 1.0, 0xffffffff)
-    @coord_text.draw("#{@scroll_x}", 500, 525, 1, 1.0, 1.0, 0xffffffff)
+    @coord_text.draw("#{@map.world_x}", 500, 525, 1, 1.0, 1.0, 0xffffffff)
     @map.draw
     @player.draw
     @hud.draw(0,500,0)

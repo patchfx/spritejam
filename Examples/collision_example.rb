@@ -30,24 +30,24 @@ class CollisionExampleWindow < Gosu::Window
   
   def update
     if button_down? Gosu::Button::KbRight
-      @player.x += 3 unless @map.solid_tile?('right', @player.x, @player.y, 0, 0)
+      @player.x += 3 unless @map.solid_tile?('right', @player.x, @player.y)
     end
     
     if button_down? Gosu::Button::KbLeft
-      @player.x -= 3 unless @map.solid_tile?('left', @player.x, @player.y, 0, 0)
+      @player.x -= 3 unless @map.solid_tile?('left', @player.x, @player.y)
     end
     
     if button_down? Gosu::Button::KbUp
-      @player.y -= 3 unless @map.solid_tile?('up', @player.x, @player.y, 0, 0)
+      @player.y -= 3 unless @map.solid_tile?('up', @player.x, @player.y)
     end
     
     if button_down? Gosu::Button::KbDown
-      @player.y += 3 unless @map.solid_tile?('down', @player.x, @player.y, 0, 0)
+      @player.y += 3 unless @map.solid_tile?('down', @player.x, @player.y)
     end
   end
   
   def draw
-    @map.draw(0, 0)
+    @map.draw
     @player.draw
   end
   
