@@ -53,7 +53,7 @@ class CollisionExampleWindow < Gosu::Window
     
     if button_down? Gosu::Button::KbUp
       unless @map.solid_tile?('up', @player.x, @player.y)
-        @player.y -= 3
+        @player.y -= 1
         if @player.y >= 300
           @map.scroll_y('up')
         end
@@ -62,7 +62,7 @@ class CollisionExampleWindow < Gosu::Window
     
     if button_down? Gosu::Button::KbDown
       unless @map.solid_tile?('down', @player.x, @player.y)
-        @player.y += 3
+        @player.y += 1
         if @player.y >= 300
           @map.scroll_y('down')
         end

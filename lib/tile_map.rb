@@ -12,7 +12,7 @@ module SpriteJam
   
   class TileMap
     attr_reader :world_x, :world_y
-    # Can seperate the actual map stuff into a map class
+
     def initialize(window, map_file, viewport_x, viewport_y)
       @viewport_x = viewport_x
       @viewport_y = viewport_y
@@ -21,6 +21,7 @@ module SpriteJam
       @tile_set = SpriteJam::TileSet.new(@window, @map)
       @world_x = 0
       @world_y = 0
+      @scroll_speed = 1
     end
     
     def boundary_y
@@ -39,22 +40,7 @@ module SpriteJam
       return collision_left(offset_y, offset_x, size) if direction == 'left'
       return collision_up(offset_y, offset_x, size) if direction == 'up'
       return collision_down(offset_y, offset_x, size) if direction == 'down'
-      
       false
-    end
-    
-    def scroll_x(direction)
-      unless (((@world_x * @map.tile_size) + @window.width) >= (@map.width * @map.tile_size))
-        @world_x += 1 if direction == 'right'
-        @world_x -= 1 if direction == 'left'
-      end
-    end
-    
-    def scroll_y(direction)
-      unless (((@world_y * @map.tile_size) + @window.width) >= (@map.height * @map.tile_size))
-        @world_y += 1 if direction == 'down'
-        @world_y -= 1 if direction == 'up'
-      end
     end
     
     def collision_right(y, x, size)
@@ -95,6 +81,24 @@ module SpriteJam
     
     def collision_offset(coord, screen_offset)
       ((coord+(screen_offset*@map.tile_size))/@map.tile_size)
+    end
+    
+    def scroll_x(direction)
+      unless ((@world_x * @map.tile_size) + @window.width) >= world_x_boundary
+        @world_x += @scroll_speed if direction == 'right'
+        @world_x -= @scroll_speed if direction == 'left'
+      end
+    end
+    
+    def scroll_y(direction)
+      unless (((@world_y * @map.tile_size) + @window.width) >= (@map.height * @map.tile_size))
+        @world_y += @scroll_speed if direction == 'down'
+        @world_y -= @scroll_speed if direction == 'up'
+      end
+    end
+    
+    def world_x_boundary
+      (@map.width * @map.tile_size)
     end
     
     # Work out the width and height in the context of the viewport size
