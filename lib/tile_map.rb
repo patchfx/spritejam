@@ -24,14 +24,6 @@ module SpriteJam
       @scroll_speed = 1
     end
     
-    def boundary_y
-      @map.boundary_for({:coord => :y, :viewport => @viewport_y})
-    end
-    
-    def boundary_x
-      @map.boundary_for({:coord => :x, :viewport => @viewport_x})
-    end
-    
     def solid_tile?(direction, x, y)    
       size = 1
       offset_x = collision_offset(x, @world_x)
