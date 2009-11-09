@@ -1,8 +1,12 @@
-.: SpriteJam Framework (0.0.9) :.
+.: SpriteJam Framework (0.0.10) :.
 
 The framework is a collection of tools and little libraries to help with games development using the Gosu lib in Ruby. 
 
 Current Features:
+
+Input Manager
+	- Notifies all registered game assets to player input
+	- Handles multiple simultaneous key presses
 
 TileMap Engine
   - Map loader
@@ -11,7 +15,7 @@ TileMap Engine
   - Customisable viewport
   
 Features in Development:
-  - TileMap Editor
+  - Collision Detection
 
 ===========================
 
