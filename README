@@ -5,6 +5,7 @@ The framework is a collection of tools and little libraries to help with games d
 Current Features:
 
 Input Manager
+  - Register game entities with the input manager
 	- Notifies all registered game assets to player input
 	- Handles multiple simultaneous key presses
 
@@ -16,6 +17,10 @@ TileMap Engine
   
 Features in Development:
   - Collision Detection
+
+TODO:
+  - Fix collision detection bug when using a viewport
+  - Convert map format to YAML
 
 ===========================
 
