@@ -6,6 +6,7 @@ end
 require 'gosu'
 require File.dirname(__FILE__) + '/map'
 require File.dirname(__FILE__) + '/tile_set'
+require File.dirname(__FILE__) + '/viewport'
 
 
 module SpriteJam
@@ -14,10 +15,9 @@ module SpriteJam
     attr_reader :world_x, :world_y
 
     def initialize(window, map_file, viewport_x, viewport_y)
-      @viewport_x = viewport_x
-      @viewport_y = viewport_y
       @window = window
       @map = SpriteJam::Map.new(map_file)
+      @viewport = SpriteJam::Viewport.new(viewport_x, viewport_y, @map.height, @map.width)
       @tile_set = SpriteJam::TileSet.new(@window, @map)
       @world_x = 0
       @world_y = 0
