@@ -4,7 +4,7 @@ describe SpriteJam::TileMap do
   describe "creation" do
     before(:each) do
       SpriteJam::TileSet.stub!(:new)
-      @map = mock(:map, :width => 100, :height => 200)
+      @map = mock(:map, :width => 100, :height => 200, :tile_size => 32)
       SpriteJam::Map.stub!(:new).and_return(@map)
     end
     

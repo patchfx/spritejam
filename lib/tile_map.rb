@@ -17,11 +17,11 @@ module SpriteJam
     def initialize(window, map_file, viewport_x, viewport_y)
       @window = window
       @map = SpriteJam::Map.new(map_file)
-      @viewport = SpriteJam::Viewport.new(viewport_x, viewport_y, @map.height, @map.width)
+      @viewport = SpriteJam::Viewport.new(viewport_x, viewport_y, @map.height, @map.width, @map.tile_size)
       @tile_set = SpriteJam::TileSet.new(@window, @map)
       @world_x = 0
       @world_y = 0
-      @scroll_speed = 1
+      @scroll_speed = 3
     end
     
     def solid_tile?(direction, x, y)    
@@ -92,15 +92,10 @@ module SpriteJam
     def world_x_boundary
       (@map.width * @map.tile_size)
     end
-    
-    # Work out the width and height in the context of the viewport size
-    def offset_with_viewport(geom, viewport)
-      geom - (geom - (viewport / @map.tile_size))
-    end
 
     def draw
-      offset_with_viewport(@map.height, @viewport_y).times do |y|
-        offset_with_viewport(@map.width, @viewport_x).times do |x|
+      @viewport.offset_x.times do |x|
+        @viewport.offset_y.times do |y|
           tile = @tile_set.tile_codes[y + @world_y][x + @world_x].index
           if tile
             @tile_set.tiles[tile].draw((x * @map.tile_size), (y * @map.tile_size), 0, 1, 1)
